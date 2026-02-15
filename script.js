@@ -600,15 +600,15 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ─── Responsive scaling ───────────────────────────────────────────
-// Scale the 1920×1080 Figma frame to fit any viewport while
-// preserving aspect ratio (letterbox with black bars).
+// Scale the 1920×1080 Figma frame to cover the entire viewport.
+// No black bars — edges crop slightly on non-16:9 screens.
 
 function scaleFrame() {
     const frame = document.querySelector('.frame');
     if (!frame) return;
     const vw = window.innerWidth;
     const vh = window.innerHeight;
-    const scale = Math.min(vw / 1920, vh / 1080);
+    const scale = Math.max(vw / 1920, vh / 1080);
     frame.style.transform = `scale(${scale})`;
 }
 
