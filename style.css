@@ -2,7 +2,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    background: #2a0a20;
+    background: radial-gradient(ellipse at center, #c94080 0%, #8a1a45 50%, #3a0a20 100%);
     display: flex;
     justify-content: center;
     align-items: center;
