@@ -1,0 +1,555 @@
+/* Exact Figma layout - Frame: 1920x1080 */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Frame container - exact 1920x1080, scaled by JS to fit viewport */
+.frame {
+    width: 1920px;
+    height: 1080px;
+    position: relative;
+    overflow: hidden;
+    transform-origin: center center;
+    /* Fallback scale for no-JS; overridden by scaleFrame() */
+    transform: scale(1);
+}
+
+/* bg 1: x:-55 y:0 w:2030 h:1142 */
+.bg-1 {
+    position: absolute;
+    left: -55px;
+    top: 0px;
+    width: 2030px;
+    height: 1142px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Tokens: x:55 y:-65 w:1889 h:1110 */
+.tokens {
+    position: absolute;
+    left: 55px;
+    top: -65px;
+    width: 1889px;
+    height: 1110px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Decorative elements - exact Figma positions */
+.el {
+    position: absolute;
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* 1 9: x:-81 y:-44 w:329 h:247 */
+.el-1_9 { left: -81px; top: -44px; width: 329px; height: 247px; }
+
+/* 3 1: x:248 y:-33 w:171 h:126 */
+.el-3_1 { left: 248px; top: -33px; width: 171px; height: 126px; }
+
+/* 6 1: x:1580 y:235 w:163 h:93 */
+.el-6_1 { left: 1580px; top: 235px; width: 163px; height: 93px; }
+
+/* 13 1: x:1680 y:-50 w:330 h:201 */
+.el-13_1 { left: 1680px; top: -50px; width: 330px; height: 201px; }
+
+/* 14 1: x:1615 y:591 w:199 h:153 */
+.el-14_1 { left: 1615px; top: 591px; width: 199px; height: 153px; }
+
+/* 17 1: x:-40 y:658 w:190 h:142 */
+.el-17_1 { left: -40px; top: 658px; width: 190px; height: 142px; }
+
+/* 18 1: x:1731 y:827 w:304 h:222 */
+.el-18_1 { left: 1731px; top: 827px; width: 304px; height: 222px; }
+
+/* Giveaways box: x:411 y:345 w:649 h:578 */
+.giveaways-box {
+    position: absolute;
+    left: 411px;
+    top: 345px;
+    width: 649px;
+    height: 578px;
+    z-index: 4;
+    pointer-events: none;
+}
+
+/* List frame: x:454 y:383 w:296 h:417 */
+.list-frame {
+    position: absolute;
+    left: 454px;
+    top: 383px;
+    width: 296px;
+    height: 417px;
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* List content — perfectly inset inside list-frame border (10px each side) */
+.list-content {
+    position: absolute;
+    left: 464px;
+    top: 394px;
+    width: 276px;
+    height: 395px;
+    z-index: 6;
+    overflow: hidden;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Add name row */
+.name-add-row {
+    display: flex;
+    gap: 4px;
+    padding: 6px 8px;
+    background: #d46aab;
+    flex-shrink: 0;
+}
+
+.name-add-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 6px 10px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: Arial, sans-serif;
+    color: #5a0040;
+    background: #f5b8de;
+    border-radius: 6px;
+}
+
+.name-add-input::placeholder {
+    color: rgba(150, 60, 120, 0.4);
+    font-weight: 500;
+}
+
+.name-add-input:focus {
+    background: #ffd6ee;
+}
+
+.name-add-btn {
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 6px;
+    background: #a8207a;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+    flex-shrink: 0;
+}
+
+.name-add-btn:hover {
+    background: #c0288e;
+}
+
+/* Scrollable name list */
+.name-list {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+.name-list::-webkit-scrollbar {
+    width: 6px;
+}
+.name-list::-webkit-scrollbar-track {
+    background: rgba(200, 100, 160, 0.2);
+}
+.name-list::-webkit-scrollbar-thumb {
+    background: #c0288e;
+    border-radius: 3px;
+}
+
+/* Individual name row */
+.name-row {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    height: 36px;
+    min-height: 36px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: Arial, sans-serif;
+    color: #7a1a5e;
+    position: relative;
+    cursor: default;
+}
+
+.name-row:nth-child(odd) {
+    background: #e88cc7;
+}
+
+.name-row:nth-child(even) {
+    background: #f5b8de;
+}
+
+.name-row .name-number {
+    width: 26px;
+    font-size: 11px;
+    color: rgba(100, 30, 80, 0.5);
+    flex-shrink: 0;
+}
+
+.name-row .name-text {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.name-row .name-delete {
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(150, 30, 80, 0.3);
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.15s, background 0.15s;
+    flex-shrink: 0;
+}
+
+.name-row:hover .name-delete {
+    opacity: 1;
+}
+
+.name-row .name-delete:hover {
+    background: rgba(200, 30, 60, 0.7);
+}
+
+/* Winner highlight */
+.name-row.winner {
+    background: #ffeb3b !important;
+    color: #333;
+    animation: winnerPulse 0.6s ease-in-out 3;
+}
+
+@keyframes winnerPulse {
+    0%, 100% { background: #ffeb3b; }
+    50% { background: #fff176; }
+}
+
+/* Name count footer */
+.name-count {
+    flex-shrink: 0;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: Arial, sans-serif;
+    color: rgba(255, 255, 255, 0.7);
+    background: #a8207a;
+    text-align: center;
+}
+
+/* Rectangle 1 (spin button): x:454 y:827 w:296 h:56 */
+.rect-btn {
+    position: absolute;
+    left: 454px;
+    top: 827px;
+    width: 296px;
+    height: 56px;
+    z-index: 10;
+    cursor: pointer;
+    transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.rect-btn:hover {
+    transform: scale(1.03);
+    filter: brightness(1.15);
+}
+
+.rect-btn:active {
+    transform: scale(0.97);
+}
+
+/* BETS Logo: x:685 y:39 w:292 h:138 */
+.bets-logo {
+    position: absolute;
+    left: 685px;
+    top: 39px;
+    width: 292px;
+    height: 138px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Lucky Spin: x:425 y:201 w:373 h:171 */
+.lucky-spin {
+    position: absolute;
+    left: 425px;
+    top: 201px;
+    width: 373px;
+    height: 171px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Roll'em: x:998 y:22 w:237 h:142 */
+.rollem {
+    position: absolute;
+    left: 998px;
+    top: 22px;
+    width: 237px;
+    height: 142px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Wheel group: x:760 y:180 w:820 h:820 */
+.wheel-group {
+    position: absolute;
+    left: 760px;
+    top: 180px;
+    width: 820px;
+    height: 820px;
+    z-index: 7;
+}
+
+/* Wheel ring (full wheel image with ring): stays still */
+.wheel-ring {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 820px;
+    height: 820px;
+    z-index: 9;
+    pointer-events: none;
+}
+
+/* Wheel canvas (draws segments + text, rotates) */
+/* Union: x:815 y:235 => relative to group: x:55 y:55 w:711 h:710 */
+.wheel-canvas {
+    position: absolute;
+    left: 55px;
+    top: 55px;
+    width: 711px;
+    height: 710px;
+    z-index: 8;
+    transform-origin: center center;
+    transition: transform 0.1s ease-out;
+}
+
+.wheel-canvas.spinning {
+    /* unused — transitions set via inline JS */
+}
+
+/* Pointer + Button merged container (stays still) */
+.wheel-center {
+    position: absolute;
+    left: 297px;
+    top: 237px;
+    width: 226px;
+    height: 286px;
+    z-index: 12;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.wheel-center:hover {
+    transform: scale(1.05);
+}
+
+.wheel-center:active {
+    transform: scale(0.95);
+}
+
+/* Pointer inside merged container: offset from container top */
+.center-pointer {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 85px;
+    height: 120px;
+    pointer-events: none;
+}
+
+/* Button inside merged container */
+.center-button {
+    position: absolute;
+    left: 0;
+    top: 60px;
+    width: 226px;
+    height: 226px;
+    pointer-events: none;
+}
+
+/* Result Display — Winner Popup (Figma design) */
+.result-display {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease, background 0.5s ease;
+}
+
+.result-display.show {
+    opacity: 1;
+    pointer-events: auto;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.result-popup {
+    position: relative;
+    width: 883px;
+    height: 616px;
+    transform: scale(0) rotate(-8deg);
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+}
+
+.result-display.show .result-popup {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+    animation: none;
+}
+
+.result-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    filter: drop-shadow(0 0 40px rgba(245, 125, 155, 0.5));
+}
+
+.result-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    padding-top: 20px;
+}
+
+.result-name {
+    font-family: 'Bakbak One', cursive;
+    font-size: 48px;
+    font-weight: 400;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1.2;
+    max-width: 700px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease 0.3s, transform 0.4s ease 0.3s;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.result-display.show .result-name {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.result-congrats {
+    font-family: 'Bakbak One', cursive;
+    font-size: 48px;
+    font-weight: 400;
+    color: #f57d9b;
+    text-align: center;
+    margin-top: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease 0.5s, transform 0.4s ease 0.5s;
+    text-shadow: 0 0 15px rgba(245, 125, 155, 0.4);
+}
+
+.result-display.show .result-congrats {
+    opacity: 1;
+    transform: translateY(0);
+    animation: shimmer 2s ease-in-out 0.9s infinite alternate;
+}
+
+.result-close-btn {
+    position: absolute;
+    bottom: 72px;
+    left: 50%;
+    transform: translateX(-50%) translateY(15px);
+    width: 187px;
+    height: 60px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    opacity: 0;
+    transition: transform 0.15s ease, opacity 0.4s ease 0.7s;
+}
+
+.result-display.show .result-close-btn {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.result-close-btn:hover {
+    transform: translateX(-50%) scale(1.08);
+    filter: brightness(1.2);
+}
+
+.result-close-btn:active {
+    transform: translateX(-50%) scale(0.95);
+}
+
+.result-close-img {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.result-close-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bakbak One', cursive;
+    font-size: 36px;
+    font-weight: 400;
+    color: #ffffff;
+    pointer-events: none;
+    letter-spacing: 1px;
+}
+
+@keyframes shimmer {
+    0% { text-shadow: 0 0 15px rgba(245, 125, 155, 0.4); }
+    100% { text-shadow: 0 0 30px rgba(245, 125, 155, 0.7), 0 0 60px rgba(245, 125, 155, 0.3); }
+}

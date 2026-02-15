@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BETS Roulette - Lucky Spin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="frame">
+        <!-- bg 1: x:-55 y:0 w:2030 h:1142 -->
+        <img src="exports/bg_1.png" class="bg-1">
+
+        <!-- Tokens: x:55 y:-65 w:1889 h:1110 -->
+        <img src="exports/Tokens.png" class="tokens">
+
+        <!-- Decorative gems/chips -->
+        <img src="exports/1_9.png" class="el el-1_9">
+        <img src="exports/3_1.png" class="el el-3_1">
+        <img src="exports/6_1.png" class="el el-6_1">
+        <img src="exports/13_1.png" class="el el-13_1">
+        <img src="exports/14_1.png" class="el el-14_1">
+        <img src="exports/17_1.png" class="el el-17_1">
+        <img src="exports/18_1.png" class="el el-18_1">
+
+        <!-- Giveaways box: x:411 y:345 w:649 h:578 -->
+        <img src="exports/giveaways_box.png" class="giveaways-box">
+
+        <!-- List frame: x:454 y:383 w:296 h:417 -->
+        <img src="exports/list_frame.png" class="list-frame">
+
+        <!-- List content: x:459 y:391 w:285 h:402 -->
+        <div class="list-content">
+            <div class="name-add-row">
+                <input type="text" id="nameInput" class="name-add-input" placeholder="Type a name..." maxlength="20">
+                <button id="addNameBtn" class="name-add-btn">+</button>
+            </div>
+            <div class="name-list" id="nameList">
+                <!-- Dynamic name rows appear here -->
+            </div>
+            <div class="name-count" id="nameCount">0 names</div>
+        </div>
+
+        <!-- Rectangle 1 (button): x:454 y:827 w:296 h:56 -->
+        <img src="exports/rectangle_1.png" class="rect-btn" id="spinButton">
+
+        <!-- BETS Logo: x:685 y:39 w:292 h:138 -->
+        <img src="exports/BETS_Logo_1.png" class="bets-logo">
+
+        <!-- Lucky Spin: x:425 y:201 w:373 h:171 -->
+        <img src="exports/lucky_spin_1.png" class="lucky-spin">
+
+        <!-- WhatsApp/Roll'em: x:998 y:22 w:237 h:142 -->
+        <img src="exports/WhatsApp_Image_2025-12-10_at_11.52.52_2ace6d06_1.png" class="rollem">
+
+        <!-- Wheel group: x:760 y:180 w:820 h:820 -->
+        <div class="wheel-group">
+            <!-- Wheel drawn on canvas (rotates): x:815 y:235 w:711 h:710 -->
+            <canvas id="wheelCanvas" class="wheel-canvas" width="1422" height="1420"></canvas>
+
+            <!-- Ring (stays still): x:760 y:180 w:820 h:820 -->
+            <img src="exports/wheel_ring.png" class="wheel-ring">
+
+            <!-- Pointer + Button merged (stays still, clickable) -->
+            <div class="wheel-center" id="wheelCenterBtn">
+                <img src="exports/pointer.png" class="center-pointer">
+                <img src="exports/button_1.png" class="center-button">
+            </div>
+        </div>
+
+        <!-- Result Display (Winner Popup from Figma) -->
+        <div id="result" class="result-display">
+            <div class="result-popup">
+                <img src="exports/winner_box.png" class="result-bg">
+                <div class="result-content">
+                    <div id="resultName" class="result-name">NAME</div>
+                    <div class="result-congrats">Congratulations!</div>
+                </div>
+                <button id="resultClose" class="result-close-btn">
+                    <img src="exports/popup_close_button.png" class="result-close-img">
+                    <span class="result-close-text">CLOSE</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
