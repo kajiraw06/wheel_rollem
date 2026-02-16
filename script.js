@@ -504,6 +504,17 @@ function spinWheel() {
             rows[winnerIdx].classList.add('winner');
             rows[winnerIdx].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
+
+        // Automatically remove winner from the list
+        names.splice(winnerIdx, 1);
+        if (riggedIdx === winnerIdx) riggedIdx = -1;
+        else if (riggedIdx > winnerIdx) riggedIdx--;
+        
+        // Redraw wheel with remaining names
+        setTimeout(() => {
+            renderNameList();
+            drawWheel();
+        }, 500);
     }, duration);
 }
 
