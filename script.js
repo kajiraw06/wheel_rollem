@@ -251,6 +251,28 @@ nameInput.addEventListener('keydown', (e) => {
     }
 });
 
+// Paste multiple names at once (split by newlines or commas)
+nameInput.addEventListener('paste', (e) => {
+    e.preventDefault();
+    const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+    
+    // Split by newlines, commas, or semicolons, then filter empty strings
+    const nameList = pastedText.split(/[\n,;]+/)
+        .map(name => name.trim())
+        .filter(name => name.length > 0);
+    
+    // Add all names to the list
+    nameList.forEach(name => {
+        if (name.length <= 20) { // respect maxlength
+            names.push(name);
+        }
+    });
+    
+    renderNameList();
+    drawWheel();
+    nameInput.value = '';
+});
+
 // ─── Draw wheel on canvas ─────────────────────────────────────────
 
 function drawWheel() {
@@ -449,7 +471,7 @@ function spinWheel() {
     const extraRotation = ((targetAngle + randomOffset) - (currentRotation % 360) + 360) % 360;
     const totalRotation = currentRotation + (360 * spins) + extraRotation;
 
-    const duration = 4500 + Math.random() * 1000;
+    const duration = 6500 + Math.random() * 1500;
 
     // Apply the spin transition
     wheelCanvas.style.transition = `transform ${duration}ms cubic-bezier(0.17, 0.67, 0.12, 0.99)`;

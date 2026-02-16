@@ -8,7 +8,7 @@ body {
     align-items: center;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
+    overflow: visible;
 }
 
 /* Frame container - exact 1920x1080, scaled by JS to fit viewport */
@@ -16,7 +16,7 @@ body {
     width: 1920px;
     height: 1080px;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     transform-origin: center center;
     /* Fallback scale for no-JS; overridden by scaleFrame() */
     transform: scale(1);
@@ -420,7 +420,7 @@ body {
 .result-display.show {
     opacity: 1;
     pointer-events: auto;
-    background: rgba(0, 0, 0, 0.55);
+    background: rgba(0, 0, 0, 0);
 }
 
 .result-popup {
